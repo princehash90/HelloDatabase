@@ -19,7 +19,7 @@ public class movieList {
 
 
     }
-    public static int getRatingOutOfFive(){
+    public static int getRatingOutOfFive(){// validation method used to check the user puts rating to be btn 0 and 5
         int rating = positiveIntInput("what is your rating, in stars out of 5?");
         while (rating<0 || rating>5){
             System.out.println("Error, enter a number between 0 and 5");
@@ -27,7 +27,7 @@ public class movieList {
         }
         return rating;
     }
-    public static String getNonEmptyMovieName(){
+    public static String getNonEmptyMovieName(){// validation method used to check if the user does not enter a movie name
         String name = stringInput("Enter the movie name");
         while (name.isEmpty()){
             System.out.println("Eror-enter a movie name");
@@ -36,7 +36,7 @@ public class movieList {
         return name;
     }
 
-    public static  void addNewMovies(){
+    public static  void addNewMovies(){// method used to add movies
         do {
             String movieName= getNonEmptyMovieName();
             boolean movieWatched =yesNoInput("Have you seen this movie yet? ");
@@ -50,7 +50,7 @@ public class movieList {
         } while (yesNoInput("Adding to the watchList? "));
 
     }
-    public static void displayAllMovies(){
+    public static void displayAllMovies(){// method used to display all movies
         List<Movie>movies= database.getAllMovies();
         if (movies.isEmpty()){
             System.out.println("No Movies");
@@ -61,7 +61,7 @@ public class movieList {
         }
     }
 
-    public static void checkIfWatchedAndRate(){
+    public static void checkIfWatchedAndRate(){// method to check for if a movie is watched and its rate
         List<Movie> unwatched = database.getAllMoviesBYWatched(false);
         for (Movie movie : unwatched){
             boolean hasWatched = yesNoInput("Have you watched "+movie.getName() + "yet?");
@@ -74,7 +74,7 @@ public class movieList {
         }
     }
 
-    public static void deleteWatchedMovies (){
+    public static void deleteWatchedMovies (){// method to delete movies by watched status
         System.out.println("Here are all the movies you have seen");
 
         List<Movie> watchedMovies = database.getAllMoviesBYWatched(true);
@@ -86,7 +86,7 @@ public class movieList {
         }
     }
 
-    public static void searchMovie(){
+    public static void searchMovie(){// method to search for movie
         String searchMovie = stringInput("Enter a movie name to search for?");
         List<Movie>movieMatches = database.search(searchMovie);
        if (movieMatches.isEmpty()){
